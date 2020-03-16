@@ -14,16 +14,50 @@ User.create!(name:  "Example User",
                password_confirmation: password)
 end
 
-users = User.order(:created_at).take(6)
+# users = User.order(:created_at).take(6)
+# 50.times do
+#   content = Faker::Lorem.sentence(5)
+#   users.each { |user| user.microposts.create!(content: content,
+#                                               picture: File.open("./public/images/kitten.jpg")) }
+# end
+content = Faker::Lorem.sentence(5)
+user1 = User.find(1)
 50.times do
-  content = Faker::Lorem.sentence(5)
-  users.each { |user| user.microposts.create!(content: content) }
+  user1.microposts.create!(content: content,
+                           picture: File.open("./public/images/kitten.jpg"))
 end
+user2 = User.find(2)
+50.times do
+  user2.microposts.create!(content: content,
+                           picture: File.open("./public/images/dog.jpg"))
+end
+user3 = User.find(3)
+50.times do
+  user2.microposts.create!(content: content,
+                           picture: File.open("./public/images/capybara.jpg"))
+end
+user4 = User.find(4)
+50.times do
+  user2.microposts.create!(content: content,
+                           picture: File.open("./public/images/kame.jpg"))
+end
+user5 = User.find(5)
+50.times do
+  user2.microposts.create!(content: content,
+                           picture: File.open("./public/images/mouse.jpeg"))
+end
+user6 = User.find(6)
+50.times do
+  user2.microposts.create!(content: content,
+                           picture: File.open("./public/images/ruby.jpeg"))
+end
+
+
 
 # リレーションシップ
 users = User.all
 user  = users.first
-following = users[2..50]
+following = users[1..50]
 followers = users[3..40]
 following.each { |followed| user.follow(followed) }
 followers.each { |follower| follower.follow(user) }

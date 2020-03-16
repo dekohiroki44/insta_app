@@ -13,8 +13,8 @@ RSpec.describe Micropost, type: :model do
     micropost_a.user_id = nil
     expect(micropost_a).to be_invalid
   end
-  it 'is invalid without content' do
-    micropost_a.content = ''
+  it 'is invalid without picture' do
+    micropost_a.picture = nil
     expect(micropost_a).to be_invalid
   end
   it 'is invalid with content longer than 140 characters' do

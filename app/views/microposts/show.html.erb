@@ -1,0 +1,36 @@
+<% provide(:title, "#{@user.name}\'s post #{@micropost.content}") %>
+<div class = "micropost">
+  <%= render @micropost %>
+</div>
+<div class = "comment-wrapper border-top mb-10">
+  <% if @comments.empty? %>
+    <h3>comment is nothing...</h3>
+  <% else %>
+    <h3>comments</h3> 
+    <div class = "comments" >
+      <% @comments.each do |c| %>
+        <li>
+          <%= debug c %>
+          <%# link_to gravatar_for(c.user, size: 50), c.user %>
+          <span class = "user"><%# link_to c.user.name, c.user %></span>
+          <span class = "content">
+            <div class = "text"><%= c.content %></div>
+          </span>
+          <span class = "timestamp">
+            Posted <%= time_ago_in_words(c.created_at || Time.now) %> ago.
+            <% if current_user?(c.user) %>
+              <%= link_to "delete", micropost_comment_path(c.micropost.id, c.id), method: :delete, data:{ confirm: "You sure?" } %>
+            <% end %>
+          </span>
+        </li>
+      <% end %>
+    </div>
+  <% end %>
+  <%= form_with(model: [@micropost, @comment], local: true) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+    <div class="field">
+      <%= f.text_area :content, placeholder: "Compose new comment..." %>
+    </div>
+    <%= f.submit "Post", class: "btn btn-primary" %>
+  <% end %>
+</div>

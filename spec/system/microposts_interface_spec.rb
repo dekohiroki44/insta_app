@@ -3,12 +3,12 @@ require 'rails_helper'
 describe 'microposts_interface', type: :system do
   let(:user) { FactoryBot.create(:user) }
   before do
-    FactoryBot.create(:micropost, user: user, content: 'test')
+    FactoryBot.create(:micropost, user: user, picture: File.open("#{Rails.root}/public/images/kitten.jpg"))
     visit login_path
     fill_in 'Email', with: user.email
     fill_in 'Password', with: user.password
     click_button 'Log in'
-    visit root_path
+    visit new_micropost_path
   end
   it 'is invlid with invalid post' do
     expect{ 
@@ -18,18 +18,18 @@ describe 'microposts_interface', type: :system do
     expect(page).to have_css '#error_explanation'
   end
   it 'is valid with valid post' do
-    content = 'This micropost really ties the room together'
     expect{ 
-    fill_in with: 'This micropost really ties the room together'
+    attach_file "#{Rails.root}/public/images/kitten.jpg"
     click_button 'Post'
     }.to change{ Micropost.count }.by(1)
     expect(current_path).to eq root_path
-    expect(page).to have_content content
+    expect(page).to have_selector("img[src$='kitten.jpg']")
   end
   it 'is valid delete a micropost' do
-    expect(page).to have_content 'test' 
+    visit root_path
+    expect(page).to have_selector("img[src$='kitten.jpg']") 
     click_link 'delete' 
     page.accept_confirm
-    expect(page).to_not have_content 'test' 
+    expect(page).to_not have_selector("img[src$='kitten.jpg']")
   end
 end

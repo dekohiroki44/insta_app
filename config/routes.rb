@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  
   root 'static_pages#home'
   get '/help', to: 'static_pages#help'
   get '/signup', to: 'users#new'
@@ -13,6 +12,10 @@ Rails.application.routes.draw do
     end
   end
   resources :users
-  resources :microposts, only: [:create, :destroy]
+  resources :microposts, only: [:new, :show, :create, :destroy] do
+    resources :comments, only: [:create, :destroy]
+  end
   resources :relationships, only: [:create, :destroy]
+  resources :likes, only: [:create, :destroy]
+  
 end

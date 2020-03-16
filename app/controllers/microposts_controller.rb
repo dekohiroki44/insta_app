@@ -1,6 +1,17 @@
 class MicropostsController < ApplicationController
-  before_action :logged_in_user, only: [:create, :destroy]
+  before_action :logged_in_user, only: [:new, :create, :destroy]
   before_action :correct_user,   only: :destroy
+
+  def new
+    @micropost = Micropost.new
+  end
+
+  def show
+    @micropost = Micropost.find(params[:id])
+    @user = User.find(@micropost.user_id)
+    @comments = @micropost.comments
+    @comment = @micropost.comments.build
+  end
 
   def create
     @micropost = current_user.microposts.build(micropost_params)
@@ -9,7 +20,7 @@ class MicropostsController < ApplicationController
       redirect_to root_url
     else
       @feed_items = []
-      render 'static_pages/home'
+      render new_micropost_path
     end
   end
 

@@ -64,7 +64,8 @@ RSpec.describe User, type: :model do
     end
     it 'associated microposts are destroyed' do
       user.save
-      user.microposts.create!(content: "Lorem ipsum")
+      user.microposts.create!(content: "Lorem ipsum", 
+                              picture: File.open("#{Rails.root}/public/images/kitten.jpg"))
       expect{ user.destroy }.to change{ Micropost.count }.by(-1)
     end
   end
