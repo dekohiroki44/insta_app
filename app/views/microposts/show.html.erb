@@ -10,8 +10,7 @@
     <div class = "comments" >
       <% @comments.each do |c| %>
         <li>
-          <%= debug c %>
-          <%# link_to gravatar_for(c.user, size: 50), c.user %>
+          <%# debug c.user %>
           <span class = "user"><%# link_to c.user.name, c.user %></span>
           <span class = "content">
             <div class = "text"><%= c.content %></div>

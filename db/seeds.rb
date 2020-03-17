@@ -13,14 +13,14 @@ User.create!(name:  "Example User",
                password:              password,
                password_confirmation: password)
 end
-
+content = Faker::Lorem.sentence(5)
 # users = User.order(:created_at).take(6)
 # 50.times do
 #   content = Faker::Lorem.sentence(5)
 #   users.each { |user| user.microposts.create!(content: content,
-#                                               picture: File.open("./public/images/kitten.jpg")) }
+# picture: File.open("./public/images/kitten.jpg")) }
 # end
-content = Faker::Lorem.sentence(5)
+
 user1 = User.find(1)
 50.times do
   user1.microposts.create!(content: content,
@@ -33,22 +33,22 @@ user2 = User.find(2)
 end
 user3 = User.find(3)
 50.times do
-  user2.microposts.create!(content: content,
+  user3.microposts.create!(content: content,
                            picture: File.open("./public/images/capybara.jpg"))
 end
 user4 = User.find(4)
 50.times do
-  user2.microposts.create!(content: content,
+  user4.microposts.create!(content: content,
                            picture: File.open("./public/images/kame.jpg"))
 end
 user5 = User.find(5)
 50.times do
-  user2.microposts.create!(content: content,
+  user5.microposts.create!(content: content,
                            picture: File.open("./public/images/mouse.jpeg"))
 end
 user6 = User.find(6)
 50.times do
-  user2.microposts.create!(content: content,
+  user6.microposts.create!(content: content,
                            picture: File.open("./public/images/ruby.jpeg"))
 end
 

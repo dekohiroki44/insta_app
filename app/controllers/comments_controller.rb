@@ -6,18 +6,14 @@ class CommentsController < ApplicationController
     @comment = micropost.comments.build(comment_params)
     @comment.user_id = current_user.id
     if @comment.save
-      flash[:success] = "コメントしました"
+      flash[:success] = "Comment created!"
       redirect_back(fallback_location: root_path)
     else
-      flash[:success] = "コメントできませんでした"
       redirect_back(fallback_location: root_path)
     end
   end
 
   def destroy
-    # p ############
-    # p params[:comment_id]
-    # p #################
     Comment.find_by(id: params[:id], micropost_id: params[:micropost_id]).destroy
     redirect_back(fallback_location: root_path)
   end

@@ -2,7 +2,7 @@
   <%= link_to gravatar_for(micropost.user, size: 50), micropost.user %>
   <span class="user"><%= link_to micropost.user.name, micropost.user %></span>
   <span class="content">
-    <div class = "content"><%= micropost.content %></div>
+    <div class = "text"><%= micropost.content %></div>
     <% if micropost.picture? %>
       <%= link_to image_tag(micropost.picture.url), micropost_path(micropost) %>
     <% end %>
@@ -13,6 +13,6 @@
       <%= link_to "delete", micropost, method: :delete,
                                        data: { confirm: "You sure?" } %>
     <% end %>
+    <%= render "likes/like", micropost: micropost %>
   </span>
-  <%= render "likes/like", micropost: micropost %>
 </li>
