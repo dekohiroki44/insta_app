@@ -27,10 +27,10 @@ describe 'signup', type: :system do
     expect(current_path).to eq user_path(user)
     expect(page).to have_content 'Welcome to the Insta App!'
     within '.navbar-nav' do
-      expect(page).to_not have_link 'Log in', href: login_path
-      click_link 'Account'
-      expect(page).to have_link 'Log out', href: logout_path
-      expect(page).to have_link 'Profile', href: user_path(user)
+      expect(page).to_not have_link 'ログイン', href: login_path
+      click_link 'アカウント'
+      expect(page).to have_link 'ログアウト', href: logout_path
+      expect(page).to have_link 'マイ ページ', href: user_path(user)
     end
   end
 end

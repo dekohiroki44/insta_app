@@ -27,19 +27,19 @@ describe 'login', type: :system do
       click_button 'Log in'
     end
     scenario 'correct links are displayed when log in' do
-      expect(page).to_not have_link 'Log in', href: login_path
-      expect(page).to have_link 'Users', href: users_path
-      click_link 'Account'
-      expect(page).to have_link 'Log out', href: logout_path
-      expect(page).to have_link 'Profile', href: user_path(user)
+      expect(page).to_not have_link 'ログイン', href: login_path
+      expect(page).to have_link 'ユーザー一覧', href: users_path
+      click_link 'アカウント'
+      expect(page).to have_link 'ログアウト', href: logout_path
+      expect(page).to have_link 'マイ ページ', href: user_path(user)
     end
     scenario 'and log out' do
-      click_link 'Account'
-      click_link 'Log out' 
+      click_link 'アカウント'
+      click_link 'ログアウト' 
       expect(current_path).to eq root_path
-      expect(page).to have_link 'Log in', href: login_path
-      expect(page).to_not have_link 'Log out', href: logout_path
-      expect(page).to_not have_link 'Profile', href: user_path(user)
+      expect(page).to have_link 'ログイン', href: login_path
+      expect(page).to_not have_link 'ログアウト', href: logout_path
+      expect(page).to_not have_link 'プロフィール', href: user_path(user)
     end
   end
 end

@@ -55,9 +55,5 @@ RSpec.describe "users", type: :request do
       patch user_path(@other), params: {user: { password:@other.password, password_confirmation: @other.password_confirmation, admin: true } }
       expect(@other.reload.admin).to be_falsey
     end
-    it 'redirect destroy' do
-      expect{ delete user_path(@user)}.to_not change{ User.count }
-      expect(response).to redirect_to root_path
-    end
   end
 end

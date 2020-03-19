@@ -4,21 +4,21 @@
 </div>
 <div class = "comment-wrapper border-top mb-10">
   <% if @comments.empty? %>
-    <h3>comment is nothing...</h3>
+    <h3>コメントはまだありません</h3>
   <% else %>
-    <h3>comments</h3> 
+    <h3><%= "#{@comments.count}のコメント" %></h3> 
     <div class = "comments" >
-      <% @comments.each do |c| %>
+      <% @comments.each do |comment| %>
         <li>
-          <%# debug c.user %>
-          <span class = "user"><%# link_to c.user.name, c.user %></span>
+          <span class = "user"><%= link_to comment.user.name, comment.user %></span>
+          <%= link_to gravatar_for(comment.user, size: 50), comment.user %>
           <span class = "content">
-            <div class = "text"><%= c.content %></div>
+            <div class = "text"><%= comment.content %></div>
           </span>
           <span class = "timestamp">
-            Posted <%= time_ago_in_words(c.created_at || Time.now) %> ago.
-            <% if current_user?(c.user) %>
-              <%= link_to "delete", micropost_comment_path(c.micropost.id, c.id), method: :delete, data:{ confirm: "You sure?" } %>
+            Posted <%= time_ago_in_words(comment.created_at || Time.now) %> ago.
+            <% if current_user?(comment.user) %>
+              <%= link_to "delete", micropost_comment_path(comment.micropost.id, comment.id), method: :delete, data:{ confirm: "You sure?" } %>
             <% end %>
           </span>
         </li>
@@ -30,6 +30,6 @@
     <div class="field">
       <%= f.text_area :content, placeholder: "Compose new comment..." %>
     </div>
-    <%= f.submit "Post", class: "btn btn-primary" %>
+    <%= f.submit "コメントする", class: "btn btn-primary" %>
   <% end %>
 </div>

@@ -10,21 +10,17 @@ describe 'users_edit with friendly forwarding', type: :system do
   end
   scenario 'invalid edit information' do
     expect(current_path).to eq edit_user_path(user)
-    fill_in 'Name', with: ''
-    fill_in 'Email', with: 'foo@invalid'
-    fill_in 'Password', with: 'foo'
-    fill_in 'Confirmation', with: 'bar'
-    click_button 'Save changes'
+    fill_in '名前', with: ''
+    fill_in 'メールアドレス', with: ''
+    click_button '更新'
     expect(user.reload.name).to eq user.name
-    expect(page).to have_selector('.alert', text: 'The form contains 4 errors.') 
+    expect(page).to have_selector('.alert', text: 'The form contains') 
   end
   scenario 'valid edit information' do
     expect(current_path).to eq edit_user_path(user)
-    fill_in 'Name', with: 'Foo Bar'
-    fill_in 'Email', with: 'foo@bar.com'
-    fill_in 'Password', with: ''
-    fill_in 'Confirmation', with: ''
-    click_button 'Save changes'
+    fill_in '名前', with: 'Foo Bar'
+    fill_in 'メールアドレス', with: 'foo@bar.com'
+    click_button '更新'
     expect(page).to have_selector('.alert')
     expect(current_path).to eq user_path(user)
     expect(user.reload.name).to eq 'Foo Bar'

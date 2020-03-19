@@ -10,7 +10,7 @@ class MicropostsController < ApplicationController
     @micropost = Micropost.find(params[:id])
     @user = User.find(@micropost.user_id)
     @comments = @micropost.comments
-    @comment = @micropost.comments.build
+    @comment = Comment.new
   end
 
   def create
@@ -28,6 +28,10 @@ class MicropostsController < ApplicationController
     @micropost.destroy
     flash[:success] = "Micropost deleted"
     redirect_to request.referrer || root_url
+  end
+
+  def search
+    @microposts = Micropost.search(params[:search])
   end
 
   private

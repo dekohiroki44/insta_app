@@ -12,7 +12,6 @@ describe 'microposts_interface', type: :system do
   end
   it 'is invlid with invalid post' do
     expect{ 
-    fill_in with: ''
     click_button 'Post'
     }.to_not change{ Micropost.count }
     expect(page).to have_css '#error_explanation'
@@ -28,7 +27,7 @@ describe 'microposts_interface', type: :system do
   it 'is valid delete a micropost' do
     visit root_path
     expect(page).to have_selector("img[src$='kitten.jpg']") 
-    click_link 'delete' 
+    click_link '削除' 
     page.accept_confirm
     expect(page).to_not have_selector("img[src$='kitten.jpg']")
   end

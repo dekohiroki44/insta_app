@@ -1,0 +1,8 @@
+<% notifications = @notifications.where.not(visitor_id: current_user.id) %>
+<% if notifications.exists? %>
+  <ol class = notifications >
+    <%= render notifications %>
+  </ol>
+<% else %>
+  <p>通知はありません</p>
+<% end %> 

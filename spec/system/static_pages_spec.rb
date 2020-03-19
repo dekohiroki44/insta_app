@@ -1,25 +1,16 @@
 require 'rails_helper'
 
-describe 'StaticPages',type: :system do
-  describe 'Home' do
+describe 'StaticPages', type: :system do
+  subject {page}
+  context 'when not logged in at home' do
     before do
-      visit '/'
+      visit root_path
     end
-
-    it 'topページでのタイトルの表示' do
-      expect(page).to have_title 'Insta App'
-    end
-
-    it 'topページのリンクを確認' do
-      expect(page).to have_link href: root_path
-    end
-  end
-
-  describe 'Help' do
-    it 'helpページでのタイトルの表示' do
-      visit help_path
-      expect(page).to have_title 'Help | Insta App'
-    end
+    it { is_expected.to have_title 'Insta App' }
+    it { is_expected.to have_link href: root_path }
+    it { is_expected.to have_link href: signup_path }
+    it { is_expected.to_not have_link href: new_micropost_path }
+    it { is_expected.to_not have_link href: notifications_path }
   end
 end
 
