@@ -12,6 +12,7 @@
   </head>
   <body>
     <%= render 'layouts/header' %>
+    <div class="modal fade" id="micropost-modal" tabindex="-1" role="dialog" aria-hidden="true"></div>
     <div class="container">
       <% flash.each do |message_type, message| %>
         <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>

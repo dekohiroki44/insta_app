@@ -11,12 +11,16 @@ class MicropostsController < ApplicationController
     @user = User.find(@micropost.user_id)
     @comments = @micropost.comments
     @comment = Comment.new
+    respond_to do |format|
+      format.html { render 'microposts/_show' }
+      format.js
+    end
   end
 
   def create
     @micropost = current_user.microposts.build(micropost_params)
     if @micropost.save
-      flash[:success] = "Micropost created!"
+      flash[:success] = "投稿しました！"
       redirect_to root_url
     else
       @feed_items = []
@@ -26,7 +30,7 @@ class MicropostsController < ApplicationController
 
   def destroy
     @micropost.destroy
-    flash[:success] = "Micropost deleted"
+    flash[:success] = "投稿を削除しました"
     redirect_to request.referrer || root_url
   end
 

@@ -4,9 +4,9 @@ describe 'users_edit with friendly forwarding', type: :system do
   let(:user) { FactoryBot.create(:user) }
   before do
     visit edit_user_path(user)
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: user.password
-    click_button 'Log in'
+    fill_in 'メールアドレス', with: user.email
+    fill_in 'パスワード', with: user.password
+    click_button 'ログインする'
   end
   scenario 'invalid edit information' do
     expect(current_path).to eq edit_user_path(user)

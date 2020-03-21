@@ -7,9 +7,9 @@ describe 'user_pages', type: :system do
     let(:notadmin) { FactoryBot.create(:user, admin: false) }
     before do
       visit login_path
-      fill_in 'Email', with: login_user.email
-      fill_in 'Password', with: login_user.password
-      click_button 'Log in'
+      fill_in 'メールアドレス', with: login_user.email
+      fill_in 'パスワード', with: login_user.password
+      click_button 'ログインする'
       visit users_path
     end
     context 'when logged in as admin' do
@@ -22,7 +22,7 @@ describe 'user_pages', type: :system do
         User.paginate(page: 1).each do |user|
           expect(page).to have_link user.name, href: user_path(user) 
           unless user.admin
-            expect(page).to have_link 'delete', href: user_path(user) 
+            expect(page).to have_link '削除', href: user_path(user) 
           end
         end
       end
@@ -31,7 +31,7 @@ describe 'user_pages', type: :system do
       let(:login_user) { notadmin }
       before(:all) { 30.times { FactoryBot.create(:user) } }
       after(:all)  { User.delete_all }
-      it { is_expected.to_not have_link 'delete' }
+      it { is_expected.to_not have_link '削除' }
     end
   end
   describe 'following/follwers' do
@@ -41,9 +41,9 @@ describe 'user_pages', type: :system do
       user.follow(other_user)
       other_user.follow(user)
       visit login_path
-      fill_in 'Email', with: user.email
-      fill_in 'Password', with: user.password
-      click_button 'Log in'
+      fill_in 'メールアドレス', with: user.email
+      fill_in 'パスワード', with: user.password
+      click_button 'ログインする'
     end
     context 'visit following page' do
       before do

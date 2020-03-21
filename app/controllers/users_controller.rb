@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :logged_in_user, only: [:index, :edit, :update, :destroy, :following, :followers]
-  before_action :correct_user, only: [:edit, :update]
+  before_action :correct_user, only: [:edit, :update, :destroy]
 
   def index
     @users = User.paginate(page: params[:page])
@@ -20,7 +20,7 @@ class UsersController < ApplicationController
     if @user.save
       log_in @user
       redirect_to @user
-      flash[:success] = 'Welcome to the Insta App!'
+      flash[:success] = 'ようこそInsta Appへ！'
     else
       render 'new'
     end

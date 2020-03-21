@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root 'static_pages#home'
+  get '/terms_of_service', to: 'static_pages#terms_of_service'
   get '/signup', to: 'users#new'
   post '/signup', to: 'users#create'
   get '/search', to: 'microposts#search'

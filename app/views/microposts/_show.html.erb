@@ -1,0 +1,39 @@
+<div class = "modal-dialog micropost-modal">
+  <div class = "modal-content">
+    <% provide(:title, "#{@user.name}\'s post #{@micropost.content}") %>
+    <div class = "micropost">
+      <%= render @micropost %>
+    </div>
+    <div class = "comment-wrapper border-top mb-10">
+      <% if @comments.empty? %>
+        <h3>コメントはまだありません</h3>
+      <% else %>
+        <h3><%= "#{@comments.count}件のコメント" %></h3> 
+        <div class = "comments" >
+          <% @comments.each do |comment| %>
+            <li>
+              <span class = "user"><%= link_to comment.user.name, comment.user %></span>
+              <%= link_to gravatar_for(comment.user, size: 50), comment.user %>
+              <span class = "content">
+                <div class = "text"><%= comment.content %></div>
+              </span>
+              <span class = "timestamp">
+                <%= time_ago_in_words(comment.created_at || Time.now) %>前
+                <% if current_user?(comment.user) %>
+                  <%= link_to "削除", micropost_comment_path(comment.micropost.id, comment.id), method: :delete, data:{ confirm: "You sure?" } %>
+                <% end %>
+              </span>
+            </li>
+          <% end %>
+        </div>
+      <% end %>
+      <%= form_with(model: [@micropost, @comment], local: true) do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+        <div class="field">
+          <%= f.text_area :content, placeholder: "コメントを入力して下さい..." %>
+        </div>
+        <%= f.submit "コメントする", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>

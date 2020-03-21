@@ -1,14 +1,15 @@
 <% provide(:title, @title) %>
 <div class="row">
   <aside class="col-md-4">
-    <section class="user_info">
-      <%= gravatar_for @user %>
-      <h1><%= @user.name %></h1>
-      <span><%= link_to "view my profile", @user %></span>
-      <span><b>Microposts:</b> <%= @user.microposts.count %></span>
-    </section>
-    <section class="stats">
-      <%= render 'shared/stats' %>
+    <aside class="col-md-12">
+      <section class="user_info">
+        <%= link_to gravatar_for(@user, size: 50), @user %>
+        <h1><%= @user.name %></h1>
+        <span><%= "#{@user.microposts.count}件の投稿" %></span>
+      </section>
+      <section class="stats">
+        <%= render 'shared/stats' %>
+      </section>
       <% if @users.any? %>
         <div class="user_avatars">
           <% @users.each do |user| %>

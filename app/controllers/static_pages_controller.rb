@@ -6,6 +6,6 @@ class StaticPagesController < ApplicationController
     end
   end
 
-  def help
+  def terms_of_service
   end
 end

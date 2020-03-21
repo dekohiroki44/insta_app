@@ -1,8 +1,14 @@
-User.create!(name:  "Example User",
+name = "例山 例太"
+profile = "こんにちは、#{name}です。webエンジニアを目指して、ポテパンキャンプでプログラミング学習中です。気軽 にフォローしてください！"
+website = "https://railstutorial.jp"
+
+User.create!(name: name,
              email: "example@railstutorial.org",
              password:              "foobar",
              password_confirmation: "foobar",
-             admin: true)
+             admin: true,
+             profile: profile,
+             website: website)
 
 99.times do |n|
   name  = Faker::Name.name
@@ -11,45 +17,34 @@ User.create!(name:  "Example User",
   User.create!(name:  name,
                email: email,
                password:              password,
-               password_confirmation: password)
+               password_confirmation: password,
+               profile: profile,
+               website: website)
 end
-content = Faker::Lorem.sentence(5)
-# users = User.order(:created_at).take(6)
-# 50.times do
-#   content = Faker::Lorem.sentence(5)
-#   users.each { |user| user.microposts.create!(content: content,
-# picture: File.open("./public/images/kitten.jpg")) }
-# end
 
-user1 = User.find(1)
-50.times do
-  user1.microposts.create!(content: content,
-                           picture: File.open("./public/images/kitten.jpg"))
+20.times do
+  User.find(1).microposts.create!(content: "チュートリアルの猫",
+                          picture: File.open("./public/images/kitten.jpg"))
 end
-user2 = User.find(2)
-50.times do
-  user2.microposts.create!(content: content,
-                           picture: File.open("./public/images/dog.jpg"))
+20.times do
+  User.find(2).microposts.create!(content: "わんこ",
+                          picture: File.open("./public/images/dog.jpg"))
 end
-user3 = User.find(3)
-50.times do
-  user3.microposts.create!(content: content,
-                           picture: File.open("./public/images/capybara.jpg"))
+20.times do
+  User.find(3).microposts.create!(content: "RSpecでお馴染みカピバラ",
+                          picture: File.open("./public/images/capybara.jpg"))
 end
-user4 = User.find(4)
-50.times do
-  user4.microposts.create!(content: content,
-                           picture: File.open("./public/images/kame.jpg"))
+20.times do
+  User.find(4).microposts.create!(content: "いけてる亀！",
+                          picture: File.open("./public/images/kame.jpg"))
 end
-user5 = User.find(5)
-50.times do
-  user5.microposts.create!(content: content,
-                           picture: File.open("./public/images/mouse.jpeg"))
+20.times do
+  User.find(5).microposts.create!(content: "ちょ、待てよ！",
+                          picture: File.open("./public/images/mouse.jpeg"))
 end
-user6 = User.find(6)
-50.times do
-  user6.microposts.create!(content: content,
-                           picture: File.open("./public/images/ruby.jpeg"))
+20.times do
+  User.find(6).microposts.create!(content: "ルビーハチドリ",
+                          picture: File.open("./public/images/ruby.jpeg"))
 end
 
 

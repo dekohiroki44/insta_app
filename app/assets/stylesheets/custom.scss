@@ -63,14 +63,13 @@ p {
   line-height: 1.7em;
 }
 
-
 /* header */
 
 #logo {
   float: left;
   margin-right: 10px;
   font-size: 1.7em;
-  color: white;
+  color: bule;
   text-transform: uppercase;
   letter-spacing: -1px;
   padding-top: 9px;
@@ -188,8 +187,20 @@ aside {
   }
 }
 
+/* relationship */
+
 .users.follow {
   padding: 0;
+}
+
+.unfollow {
+  border: 1px solid #bbb;
+}
+
+/* profile */
+
+.profile {
+  padding: 20px 0;
 }
 
 /* forms */
@@ -340,6 +351,10 @@ span.picture {
 
 /* comments index */
 
+.comment-wrapper {
+  margin: 0 20px 20px 20px;
+}
+
 .comments {
   list-style: none;
   padding: 0;
@@ -409,7 +424,6 @@ span.picture {
   .gravatar {
     float: left;
     margin-right: 10px;
-    // margin-top: 5px;
   }
 }
 

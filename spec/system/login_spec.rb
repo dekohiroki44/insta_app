@@ -6,9 +6,9 @@ describe 'login', type: :system do
   end
   context 'with invalid information' do
     before do
-      fill_in 'Email', with: ''
-      fill_in 'Password', with: ''
-      click_button 'Log in'
+      fill_in 'メールアドレス', with: ''
+      fill_in 'パスワード', with: ''
+      click_button 'ログインする'
     end
     scenario 'flash messages is presence' do
       expect(page).to have_selector('.alert-danger', text: 'Invalid email/password combination')
@@ -22,13 +22,13 @@ describe 'login', type: :system do
   context 'with valid information' do
     let(:user) { FactoryBot.create(:user) }
     before do
-      fill_in 'Email', with: user.email
-      fill_in 'Password', with: user.password
-      click_button 'Log in'
+      fill_in 'メールアドレス', with: user.email
+      fill_in 'パスワード', with: user.password
+      click_button 'ログインする'
     end
     scenario 'correct links are displayed when log in' do
       expect(page).to_not have_link 'ログイン', href: login_path
-      expect(page).to have_link 'ユーザー一覧', href: users_path
+      expect(page).to have_link '全てのユーザー', href: users_path
       click_link 'アカウント'
       expect(page).to have_link 'ログアウト', href: logout_path
       expect(page).to have_link 'マイ ページ', href: user_path(user)
