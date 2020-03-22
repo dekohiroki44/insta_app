@@ -14,7 +14,6 @@ class LikesController < ApplicationController
   def destroy
     @micropost = Like.find(params[:id]).micropost
     @micropost.unlike(current_user)
-    # Like.find(params[:id]).destroy
     respond_to do |format|
       format.html { redirect_to request.referrer || root_url }
       format.js
