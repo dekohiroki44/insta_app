@@ -4,21 +4,21 @@ website = "https://railstutorial.jp"
 
 User.create!(name: name,
              email: "example@railstutorial.org",
-             password:              "foobar",
+             password: "foobar",
              password_confirmation: "foobar",
              admin: true,
              profile: profile,
              website: website)
 
 99.times do |n|
-  name  = Faker::Name.name
+  name = Faker::Name.name
   email = "example-#{n+1}@railstutorial.org"
   password = "password"
-  User.create!(name:  name,
+  User.create!(name: name,
                email: email,
-               password:              password,
+               password: password,
                password_confirmation: password,
-               profile: profile,
+               profile: "こんにちは、#{name}です。webエンジニアを目指して、ポテパンキャンプでプログラミング学習中です。気軽 にフォローしてください！",
                website: website)
 end
 

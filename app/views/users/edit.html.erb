@@ -31,8 +31,8 @@
     <div class="gravatar_edit">
       <%= gravatar_for @user %>
     </div>
-    <ul>
-      <li><a href="http://gravatar.com/emails" target="_blank" ref="noopener">プロフィール画像の変更</a></li>
+    <ul class = edit-list>
+      <li><a href = "http://gravatar.com/emails" targe t= "_blank" ref = "noopener">プロフィール画像の変更</a></li>
       <li><%= link_to 'パスワードの変更', edit_password_path(@user) %></li>
       <li><%= link_to 'アカウントの削除', @user, method: :delete, data:{ confirm: "You sure?" }  %></li>
     </ul>
