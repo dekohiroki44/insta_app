@@ -1,8 +1,5 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
 ○自分が苦労した点
 
 多くの種類のモデルを作成していく中で、formタグと各controllerを連携させて必要なパラメータを送信する等、基本的な理解が不足していると感じました。
@@ -29,3 +26,4 @@ Ruby on Railsを使った多くの機能の実装に触れることができ、�
     RSpec
 * Deployment instructions
     heroku
+    https://intense-anchorage-94849.herokuapp.com/
