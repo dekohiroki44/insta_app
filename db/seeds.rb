@@ -47,8 +47,6 @@ end
                           picture: File.open("./public/images/ruby.jpeg"))
 end
 
-
-
 # リレーションシップ
 users = User.all
 user  = users.first
