@@ -1,0 +1,40 @@
+<% provide(:title, "Edit user") %>
+<h1>ユーザーの編集</h1>
+<p class = "describe">※は必須です</p>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@user) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <%= f.label :name, '名前 ※' %>
+      <%= f.text_field :name, class: 'form-control' %>
+
+      <%= f.label :email, 'メールアドレス ※' %>
+      <%= f.email_field :email, class: 'form-control' %>
+
+      <%= f.label :website, 'ウェブサイト' %>
+      <%= f.text_field :website, class: 'form-control' %>
+
+      <%= f.label :profile, 'プロフィール' %>
+      <%= f.text_area :profile, class: 'form-control' %>
+
+      <%= f.label :phone, '電話番号' %>
+      <%= f.text_field :phone, class: 'form-control' %>
+      
+      <label><%= f.radio_button :sex, "男" , class: 'form-control' %> 男 </label>
+      <label><%= f.radio_button :sex, "女" , class: 'form-control' %> 女</label>
+
+      <%= f.submit "更新", class: "btn btn-primary" %>
+    <% end %>
+
+    <div class="gravatar_edit">
+      <%= gravatar_for @user %>
+    </div>
+    <ul class = edit-list>
+      <li><a href = "http://gravatar.com/emails" targe t= "_blank" ref = "noopener">プロフィール画像の変更</a></li>
+      <li><%= link_to 'パスワードの変更', edit_password_path(@user) %></li>
+      <li><%= link_to 'アカウントの削除', @user, method: :delete, data:{ confirm: "You sure?" }  %></li>
+    </ul>
+  </div>
+</div>

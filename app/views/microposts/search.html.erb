@@ -1,0 +1,7 @@
+<% if @microposts.blank? %>
+  <p>一致する結果はありません</p>
+<% else %>
+  <ol class = microposts >
+    <%= render @microposts %>
+  </ol>
+<% end %> 
