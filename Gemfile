@@ -42,7 +42,3 @@ group :test do
   gem 'launchy'
   gem 'webdrivers', '~> 4.0.1'
 end
-
-group :production do
-  gem 'fog', '1.42'
-end
